@@ -1,89 +1,64 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { useNavigate, useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 
-const EditUser = () => {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [gender, setGender] = useState("Male");
-  const navigate = useNavigate();
-  const { id } = useParams();
+const UserList = () => {
+  const [users, setUser] = useState([]);
 
   useEffect(() => {
-    getUserById();
+    getUsers();
   }, []);
 
-  const updateUser = async (e) => {
-    e.preventDefault();
+  const getUsers = async () => {
+    const response = await axios.get("http://localhost:5000/users");
+    setUser(response.data);
+  };
+
+  const deleteUser = async (id) => {
     try {
-      await axios.patch(`http://localhost:5000/users/${id}`, {
-        name,
-        email,
-        gender,
-      });
-      navigate("/");
+      await axios.delete(`http://localhost:5000/users/${id}`);
+      getUsers();
     } catch (error) {
       console.log(error);
     }
   };
 
-  const getUserById = async () => {
-    const response = await axios.get(`http://localhost:5000/users/${id}`);
-    setName(response.data.name);
-    setEmail(response.data.email);
-    setGender(response.data.gender);
-  };
-
   return (
     <div className="columns mt-5 is-centered">
       <div className="column is-half">
-        <form onSubmit={updateUser}>
-          <div className="field">
-            <label className="label">Name</label>
-            <div className="control">
-              <input
-                type="text"
-                className="input"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-                placeholder="Name"
-              />
-            </div>
-          </div>
-          <div className="field">
-            <label className="label">Article</label>
-            <div className="control">
-              <textarea
-                className="textarea"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                placeholder="Write your article here"
-              ></textarea>
-            </div>
-          </div>
-          <div className="field">
-            <label className="label">Gender</label>
-            <div className="control">
-              <div className="select is-fullwidth">
-                <select
-                  value={gender}
-                  onChange={(e) => setGender(e.target.value)}
-                >
-                  <option value="Male">Male</option>
-                  <option value="Female">Female</option>
-                </select>
+        <Link to={`add`} className="button is-success mb-3">
+          Add New
+        </Link>
+        <div className="columns is-multiline">
+          {users.map((user, index) => (
+            <div key={user.id} className="column is-one-third">
+              <div className="card">
+                <div className="card-content" style={{ overflow: 'auto', maxHeight: 'none', padding: '10px' }}>
+                  <p className="title is-5">{user.name}</p>
+                  <p className="subtitle is-6" style={{ whiteSpace: 'normal' }}>{user.text}</p>
+                  <p>{user.gender}</p>
+                </div>
+                <footer className="card-footer">
+                  <Link
+                    to={`edit/${user.id}`}
+                    className="card-footer-item"
+                  >
+                    Edit
+                  </Link>
+                  <button
+                    onClick={() => deleteUser(user.id)}
+                    className="card-footer-item button is-danger"
+                  >
+                    Delete
+                  </button>
+                </footer>
               </div>
             </div>
-          </div>
-          <div className="field">
-            <button type="submit" className="button is-success">
-              Update
-            </button>
-          </div>
-        </form>
+          ))}
+        </div>
       </div>
     </div>
   );
 };
 
-export default EditUser;
+export default UserList;

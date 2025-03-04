@@ -35,7 +35,9 @@ const UserList = () => {
               <div className="card">
                 <div className="card-content">
                   <p className="title is-5">{user.name}</p>
-                  <p className="subtitle is-6">{user.email}</p>
+                  <div style={{ overflow: 'auto', maxHeight: '150px', padding: '10px' }}>
+                    <p className="subtitle is-6" style={{ whiteSpace: 'normal' }}>{user.text}</p>
+                  </div>
                   <p>{user.gender}</p>
                 </div>
                 <footer className="card-footer">

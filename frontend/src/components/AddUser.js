@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 
 const AddUser = () => {
   const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
+  const [text, setText] = useState("");
   const [gender, setGender] = useState("Male");
   const navigate = useNavigate();
 
@@ -13,7 +13,7 @@ const AddUser = () => {
     try {
       await axios.post("http://localhost:5000/users", {
         name,
-        email,
+        text,
         gender,
       });
       navigate("/");
@@ -43,7 +43,7 @@ const AddUser = () => {
             <div className="control">
               <textarea
                 className="textarea"
-                onChange={(e) => setEmail(e.target.value)}
+                onChange={(e) => setText(e.target.value)}
                 placeholder="Write your article here"
               ></textarea>
             </div>
