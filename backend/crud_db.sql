@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 03, 2022 at 04:09 AM
+-- Generation Time: Mar 04, 2025 at 04:46 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -30,7 +30,7 @@ SET time_zone = "+00:00";
 CREATE TABLE `users` (
   `id` int(11) NOT NULL,
   `name` varchar(255) DEFAULT NULL,
-  `email` varchar(255) DEFAULT NULL,
+  `text` longtext DEFAULT NULL,
   `gender` varchar(255) DEFAULT NULL,
   `createdAt` datetime NOT NULL,
   `updatedAt` datetime NOT NULL
@@ -40,11 +40,11 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `name`, `email`, `gender`, `createdAt`, `updatedAt`) VALUES
-(3, 'John Doe', 'john@gmail.com', 'Male', '2022-03-29 03:23:37', '2022-03-29 03:23:37'),
-(5, 'M Fikri', 'mfikri@gmail.com', 'Male', '2022-04-05 15:46:30', '2022-04-05 15:46:30'),
-(6, 'Dhea', 'dhea@gmail.com', 'Female', '2022-04-05 15:46:46', '2022-04-05 15:46:46'),
-(9, 'Laura Updated', 'laura@gmail.com', 'Female', '2022-06-03 02:01:55', '2022-06-03 02:07:06');
+INSERT INTO `users` (`id`, `name`, `text`, `gender`, `createdAt`, `updatedAt`) VALUES
+(12, 'RAFIQ IKHWAN NUGRAHA', 'Tipe data CHAR dan VARCHAR adalah tipe data karakter (string) yang akan sering kita gunakan. Format query tipe data CHAR dan VARCHAR: Dimana M adalah jumlah karakter yang akan dialokasikan oleh MySQL. Misalkan nilai M=5, maka MySQL menyediakan 5 karakter ', 'Male', '2025-03-03 14:19:05', '2025-03-04 15:14:03'),
+(13, 'crud_db', 'Skibidi Toilet adalah seri web machinima dari serangkai seri video YouTube dan YouTube Shorts viral yang diunggah di kanal DaFuq!?Boom!. Serial ini menggambarkan perang antara Skibidi Toilet — kepala tanpa tubuh di dalam toilet bergerak yang dapat dibunuh', 'Male', '2025-03-03 14:19:48', '2025-03-03 14:32:32'),
+(14, 'rafiq ', 'Korupsi Pertamina terbaru melibatkan tujuh tersangka yang ditahan oleh Kejaksaan Agung terkait dugaan korupsi tata kelola minyak mentah dan produk kilang pada PT Pertamina (Persero) dari tahun 2018 hingga 2023. Kasus ini diperkirakan merugikan negara hing', 'Male', '2025-03-04 14:25:09', '2025-03-04 14:25:09'),
+(19, 'nurul', '\"Sayang, setiap kali aku melihatmu, aku merasa beruntung bisa memanggilmu milikku. Kecantikanmu bukan hanya dari wajahmu, tetapi juga dari hatimu yang penuh kasih. Terima kasih telah menjadi cahaya dalam hidupku.\"\n\n\"Di setiap senyummu, aku menemukan kebahagiaan yang tak ternilai. Kamu adalah bintang yang menerangi hariku, dan aku berjanji akan selalu menjagamu dengan sepenuh hati.\"', 'Female', '2025-03-04 15:11:44', '2025-03-04 15:11:44');
 
 --
 -- Indexes for dumped tables
@@ -64,7 +64,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
