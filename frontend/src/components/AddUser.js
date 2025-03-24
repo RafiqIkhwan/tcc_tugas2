@@ -62,7 +62,6 @@ const AddUser = () => {
               </div>
             </div>
           </div>
-        
           <div className="field">
             <button type="submit" className="button is-success">
               Save
